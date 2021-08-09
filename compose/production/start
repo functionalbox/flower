@@ -4,4 +4,4 @@ set -o errexit
 set -o nounset
 
 
-celery --broker="redis://10.102.6.54:6379/0" flower
+celery --broker="redis://10.102.6.54:6379/0" flower --url_prefix=flower
