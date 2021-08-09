@@ -25,13 +25,14 @@ RUN set -eux; \
     adduser -u 1000 -G flower flower -D; \
     mkdir -p "$FLOWER_DATA_DIR"; \
     chown flower:flower "$FLOWER_DATA_DIR"
-USER flower
+
 
 COPY ./compose/production/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 RUN chown flower /start
 
+USER flower
 VOLUME $FLOWER_DATA_DIR
 
-CMD ["/start"]
+ENTRYPOINT ["/start"]
