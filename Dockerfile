@@ -32,7 +32,8 @@ RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 RUN chown flower /start
 
-USER flower
 VOLUME $FLOWER_DATA_DIR
+
+USER flower
 
 ENTRYPOINT ["/start"]
