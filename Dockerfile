@@ -4,7 +4,7 @@ FROM python:alpine
 RUN apk add --no-cache ca-certificates && update-ca-certificates
 
 # Install the required packages
-RUN pip install --no-cache-dir redis flower
+RUN pip install --no-cache-dir flower
 
 # PYTHONUNBUFFERED: Force stdin, stdout and stderr to be totally unbuffered. (equivalent to `python -u`)
 # PYTHONHASHSEED: Enable hash randomization (equivalent to `python -R`)
@@ -27,6 +27,11 @@ RUN set -eux; \
     chown flower:flower "$FLOWER_DATA_DIR"
 USER flower
 
+COPY ./compose/production/start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
+RUN chown flower /start
+
 VOLUME $FLOWER_DATA_DIR
 
-CMD ["celery", "flower"]
+CMD ["/start"]
