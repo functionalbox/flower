@@ -4,6 +4,4 @@ set -o errexit
 set -o nounset
 
 
-celery --broker="redis://10.102.6.54:6379/0" flower \
-    --url_prefix=flower \
-    --basic_auth="JdKjcypxZOtEKQtFMxlOTRZiHwTkMVwVx:EmgBUqD3LqUFSas2ZJflupn0euBDoFVjYeUk8vHw3qt0DzHPZ1iRvuhlAHSVqgol"
+celery --broker="redis://10.102.6.54:6379/0" flower
