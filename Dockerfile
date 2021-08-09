@@ -32,6 +32,10 @@ RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 RUN chown flower /start
 
+RUN mkdir /data/flower_static
+COPY ./flower/static /data/flower_static
+RUN chown -R flower /data/flower_static
+
 VOLUME $FLOWER_DATA_DIR
 
 USER flower
